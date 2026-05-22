@@ -14,16 +14,8 @@ This SAME code goes on BOTH boards. Each butterfly shouts its own ID every
 couple of seconds, and flashes green whenever it HEARS another butterfly.
 Point two boards at each other and watch them both blink.
 
-WIRING - plug the IR transceiver module into the Qwiic connector first:
-
-    RP2040  ->  IR module
-    3V3     ->  VIN
-    GND     ->  GND
-    GP0     ->  IRin   (receiver)
-    GP1     ->  IRout  (transmitter)
-
-Get this right before running - nothing will be received if GP0/GP1 are
-swapped or power isn't connected.
+Plug the IR transceiver module into the Qwiic connector with the Qwiic
+cable before running. No wiring needed - it only fits one way.
 """
 import board
 import neopixel

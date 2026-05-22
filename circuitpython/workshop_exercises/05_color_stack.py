@@ -4,7 +4,7 @@ This exercise puts exercises 03 and 04 together:
   - From ex. 03: arrange colors by DISTANCE from the body (body_distance).
   - From ex. 04: SEND and RECEIVE messages over IR between boards.
 
-Every butterfly has an ID (1-8), and each ID owns a fixed color. A butterfly
+Every butterfly has an ID (1-10), and each ID owns a fixed color. A butterfly
 broadcasts its ID over IR. When another butterfly hears it, it "catches" that
 color and PUSHES it onto a stack that grows from the body out to the tips.
 
@@ -46,6 +46,8 @@ ID_COLORS = {
     6: (40, 0, 255),     # blue
     7: (180, 0, 255),    # purple
     8: (255, 0, 140),    # pink
+    9: (0, 255, 150),    # teal
+    10: (255, 255, 255), # white
 }
 
 MY_ID = 1                # <-- change this on each board!
