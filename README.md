@@ -58,7 +58,7 @@ The board supports two programming environments: **CircuitPython** and **MicroBl
 
 2. **Copy the libraries** — copy the contents of `circuitpython/libraries/` into the `lib/` folder on the `CIRCUITPY` drive.
 
-3. **Copy a code example** — copy one of the `.py` files from `circuitpython/` onto the `CIRCUITPY` drive and rename it `code.py`. The board runs `code.py` automatically on boot.
+3. **Copy a code example** — copy one of the `.py` files from `circuitpython/workshop_exercises/` (or `circuitpython/other fun examples/`) onto the `CIRCUITPY` drive and rename it `code.py`. The board runs `code.py` automatically on boot.
 
 4. **Serial console (optional)** — connect with any serial terminal (115200 baud) or use the [Mu editor](https://codewith.mu/) to see `print()` output.
 
@@ -70,9 +70,22 @@ The board supports two programming environments: **CircuitPython** and **MicroBl
 
 ---
 
-## CircuitPython Examples
+## Workshop Exercises
 
-All examples use 26 NeoPixels on **GP2** at up to 30% brightness.
+The workshop is built around four bite-sized exercises in `circuitpython/workshop_exercises/`. Each one is self-contained, prints to the serial console, and ends with challenges for fast finishers. Work through them in order — they build skill by skill.
+
+| File | Skill |
+|---|---|
+| `01_addressing_leds.py` | Address the 26 NeoPixels one at a time |
+| `02_loops_and_brightness.py` | Animate color and brightness over time with loops |
+| `03_wing_flap.py` | Map code to the physical wing shape (distance from the body) |
+| `04_first_ir_message.py` | Send and receive a message between two boards over IR |
+
+After the exercises, flash one of the swarm examples below for the group finale.
+
+## Other Fun Examples
+
+Ready-to-run demos in `circuitpython/other fun examples/`. All use 26 NeoPixels on **GP2** at up to 30% brightness.
 
 | File | Description |
 |---|---|
@@ -81,15 +94,20 @@ All examples use 26 NeoPixels on **GP2** at up to 30% brightness.
 | `code_rainbow.py` | Cycles a full rainbow across all LEDs |
 | `code_rainbow_cycling.py` | Rotates a rainbow pattern around the LEDs |
 | `code_rainbow_fade.py` | Rotating rainbow with a sine-wave brightness pulse |
+| `code_wing_flap.py` | Sweeps light from the body out to the wingtips and back |
+| `code_wing_flap_gradient.py` | Wing flap colored by distance from the body |
 | `code_ir_send.py` | Displays a rainbow and broadcasts the pattern via IR every 3 seconds |
 | `code_ir_receive.py` | Listens for an IR pattern signal and plays a rainbow animation when received |
 | `code_ir_transceiver.py` | Low-level IR send/receive demo (receives any NEC signal, transmits every 5 s) |
+| `code_firefly_sync.py` | Mirollo-Strogatz firefly sync — butterflies flash periodically and converge to blink in unison via IR |
+| `code_color_trade.py` | Each butterfly starts with a random vibrant color and blends toward the colors of nearby butterflies via IR |
+| `code_relay_wave.py` | A rotating rainbow that ripples butterfly-to-butterfly via IR, dying out after a fixed number of hops |
 
 ### Trying an example
 
 ```
 # Copy to CIRCUITPY drive and rename:
-cp circuitpython/code_rainbow_fade.py /media/$USER/CIRCUITPY/code.py
+cp circuitpython/workshop_exercises/01_addressing_leds.py /media/$USER/CIRCUITPY/code.py
 ```
 
 ---
@@ -130,16 +148,12 @@ Requires the `adafruit_irremote` and `pulseio` libraries installed on the `CIRCU
 ```
 butterfly-OHS26-workshop/
 ├── circuitpython/
-│   ├── bootloader/          # CircuitPython 9.2.9 UF2 for Pico W
-│   ├── libraries/           # Drop required .mpy libraries here
-│   ├── code-single-neopixel.py
-│   ├── code_fade_inout.py
-│   ├── code_rainbow.py
-│   ├── code_rainbow_cycling.py
-│   ├── code_rainbow_fade.py
-│   └── code_ir_transceiver.py
+│   ├── bootloader/             # CircuitPython 9.2.9 UF2 for Pico W
+│   ├── libraries/              # Drop required .mpy libraries here
+│   ├── workshop_exercises/     # The four guided workshop exercises (start here)
+│   └── other fun examples/     # Ready-to-run demos and swarm firmware
 └── microblocks/
-    └── bootloader/          # MicroBlocks VM UF2 for Pico W
+    └── bootloader/             # MicroBlocks VM UF2 for Pico W
 ```
 
 ---
