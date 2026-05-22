@@ -102,6 +102,7 @@ Ready-to-run demos in `circuitpython/other fun examples/`. All use 26 NeoPixels 
 | `code_firefly_sync.py` | Mirollo-Strogatz firefly sync — butterflies flash periodically and converge to blink in unison via IR |
 | `code_color_trade.py` | Each butterfly starts with a random vibrant color and blends toward the colors of nearby butterflies via IR |
 | `code_relay_wave.py` | A rotating rainbow that ripples butterfly-to-butterfly via IR, dying out after a fixed number of hops |
+| `code_color_stack.py` | Each ID owns a color; butterflies catch neighbors' colors and stack them body-to-tip as a LIFO stack |
 
 ### Trying an example
 
