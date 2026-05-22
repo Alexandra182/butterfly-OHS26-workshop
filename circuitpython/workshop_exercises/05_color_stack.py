@@ -1,17 +1,22 @@
-"""Color stack — catch your neighbors' colors and stack them up your wings.
+"""Exercise 05 - Catch your neighbors' colors (the capstone)
 
-Every butterfly has an ID (1-8) and each ID owns a fixed color. A butterfly
-broadcasts its ID over IR; when another butterfly hears it, it "catches"
-that color and PUSHES it onto a stack that grows from the body out to the
-wingtips.
+This exercise puts exercises 03 and 04 together:
+  - From ex. 03: arrange colors by DISTANCE from the body (body_distance).
+  - From ex. 04: SEND and RECEIVE messages over IR between boards.
 
-The stack is LIFO: the newest caught color sits at the leading edge (nearest
-the tip). Your own color is always pinned at the body as the base of the
-stack. Six colors fit per wing; catch a seventh and the oldest falls off the
-bottom and the whole stack shifts down — like a stack of plates overflowing.
+Every butterfly has an ID (1-8), and each ID owns a fixed color. A butterfly
+broadcasts its ID over IR. When another butterfly hears it, it "catches" that
+color and PUSHES it onto a stack that grows from the body out to the tips.
+
+The stack is LIFO (last-in, first-out): the newest caught color sits nearest
+the wingtip. Your own color is pinned at the body as the base of the stack.
+Six colors fit per wing; catch a seventh and the oldest falls off the bottom
+and the whole stack shifts down.
 
 Same code on every board — just give each one a different MY_ID.
 Needs the IR module on Qwiic: GP0 = receiver, GP1 = transmitter.
+
+Run it as-is first, then try the CHALLENGES at the bottom.
 """
 import board
 import neopixel
@@ -43,26 +48,34 @@ ID_COLORS = {
     8: (255, 0, 140),    # pink
 }
 
-MY_ID = 1
+MY_ID = 1                # <-- change this on each board!
 MY_COLOR = ID_COLORS[MY_ID]
 
-SEND_EVERY = 1.5     # seconds between broadcasts of our own ID
-MAX_CAUGHT = 6       # caught colors visible per wing (rings 1..6 above the body)
+SEND_EVERY = 1.5         # seconds between broadcasts of our own ID
+MAX_CAUGHT = 6           # caught colors visible per wing (rings 1..6 above body)
 
 # The stack of caught colors, oldest first. Newest is appended to the end and
-# shown nearest the wingtip. Starts empty; our own color is the pinned base.
+# shown nearest the wingtip. Our own color is the pinned base (not in here).
 stack = []
-last_caught_id = None   # skip repeats from the same neighbor in a row
+last_caught_id = None    # skip repeats from the same neighbor in a row
 
 
 def body_distance(i):
-    """How far pixel i is from the body, 0 (at body) to 6 (wingtip)."""
+    """How far pixel i is from the body, 0 (at body) to 6 (wingtip). From ex. 03."""
     j = i if i < 13 else i - 13
     return min(j, 12 - j)
 
 
+def id_of(color):
+    """Which ID owns this color (just for readable serial output)."""
+    for cid, c in ID_COLORS.items():
+        if c == color:
+            return cid
+    return "?"
+
+
 def render():
-    """Body ring shows MY_COLOR; each ring outward shows the next caught color."""
+    """Body ring = MY_COLOR; each ring outward shows the next caught color."""
     pixels.fill(OFF)
     for i in range(26):
         d = body_distance(i)
@@ -71,14 +84,6 @@ def render():
         elif d - 1 < len(stack):
             pixels[i] = stack[d - 1]      # ring 1 -> stack[0], ring 2 -> stack[1] ...
     pixels.show()
-
-
-def id_of(color):
-    """Reverse-lookup: which ID owns this color (for readable serial output)."""
-    for cid, c in ID_COLORS.items():
-        if c == color:
-            return cid
-    return "?"
 
 
 def catch(sender_id):
@@ -100,13 +105,13 @@ last_send = time.monotonic()
 while True:
     now = time.monotonic()
 
-    # --- Broadcast our own ID ---
+    # --- Broadcast our own ID (like ex. 04) ---
     if now - last_send >= SEND_EVERY:
         encoder.transmit(pulseout, [MY_ID, ~MY_ID & 0xFF, MY_ID, ~MY_ID & 0xFF])
         last_send = now
         pulsein.clear()                   # ignore the echo of our own transmission
 
-    # --- Listen for neighbors ---
+    # --- Listen for neighbors (like ex. 04) ---
     pulses = decoder.read_pulses(pulsein, max_pulse=10000, blocking=False)
     if pulses:
         try:
@@ -119,3 +124,21 @@ while True:
             pass
         except adafruit_irremote.IRDecodeException:
             pass
+
+# ---------------------------------------------------------------------------
+# CHALLENGES — edit the code above and re-save to try these:
+#
+# 1. Give your board a different MY_ID and a partner a different one too.
+#    Watch each other's color climb your wings.
+#
+# 2. Make it a QUEUE instead of a stack: when full, drop the NEWEST instead
+#    of the oldest (change which end pop() removes from). How does the look
+#    change?
+#
+# 3. Flash the whole butterfly briefly in the caught color before adding it
+#    to the stack, so a catch is easy to spot. (Reuse the green-flash idea
+#    from ex. 04.)
+#
+# 4. Forget over time: if no new color is caught for 10 seconds, pop one
+#    color off the stack so old encounters slowly fade away.
+# ---------------------------------------------------------------------------

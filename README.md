@@ -72,7 +72,7 @@ The board supports two programming environments: **CircuitPython** and **MicroBl
 
 ## Workshop Exercises
 
-The workshop is built around four bite-sized exercises in `circuitpython/workshop_exercises/`. Each one is self-contained, prints to the serial console, and ends with challenges for fast finishers. Work through them in order — they build skill by skill.
+The workshop is built around five bite-sized exercises in `circuitpython/workshop_exercises/`. Each one is self-contained, prints to the serial console, and ends with challenges for fast finishers. Work through them in order — they build skill by skill.
 
 | File | Skill |
 |---|---|
@@ -80,6 +80,7 @@ The workshop is built around four bite-sized exercises in `circuitpython/worksho
 | `02_loops_and_brightness.py` | Animate color and brightness over time with loops |
 | `03_wing_flap.py` | Map code to the physical wing shape (distance from the body) |
 | `04_first_ir_message.py` | Send and receive a message between two boards over IR |
+| `05_color_stack.py` | Capstone: catch neighbors' colors over IR and stack them up your wings (LIFO) |
 
 After the exercises, flash one of the swarm examples below for the group finale.
 
@@ -102,7 +103,6 @@ Ready-to-run demos in `circuitpython/other fun examples/`. All use 26 NeoPixels 
 | `code_firefly_sync.py` | Mirollo-Strogatz firefly sync — butterflies flash periodically and converge to blink in unison via IR |
 | `code_color_trade.py` | Each butterfly starts with a random vibrant color and blends toward the colors of nearby butterflies via IR |
 | `code_relay_wave.py` | A rotating rainbow that ripples butterfly-to-butterfly via IR, dying out after a fixed number of hops |
-| `code_color_stack.py` | Each ID owns a color; butterflies catch neighbors' colors and stack them body-to-tip as a LIFO stack |
 
 ### Trying an example
 
