@@ -6,15 +6,16 @@ This exercise puts exercises 03 and 04 together:
 
 Every butterfly has an ID (1-10), and each ID owns a fixed color. A butterfly
 broadcasts its ID over IR. When another butterfly hears it, it "catches" that
-color and PUSHES it onto a stack that grows from the body out to the tips.
+color and shows it on its wings.
 
-The stack is LIFO (last-in, first-out): the newest caught color sits nearest
-the wingtip. Your own color is pinned at the body as the base of the stack.
-Six colors fit per wing; catch a seventh and the oldest falls off the bottom
-and the whole stack shifts down.
+Every catch SHIFTS the wing: the newest color enters right above the body
+and pushes every older color one ring out toward the wingtip. Your own color
+stays pinned at the body. Six caught colors fit per wing; catch another and
+the oldest slides off the tip. The same color can be caught over and over, so
+a chatty neighbor will fill your wing with its color.
 
 Same code on every board — just give each one a different MY_ID.
-Needs the IR module on Qwiic: GP0 = receiver, GP1 = transmitter.
+Plug the IR transceiver into the Qwiic connector with the Qwiic cable first.
 
 Run it as-is first, then try the CHALLENGES at the bottom.
 """
@@ -56,10 +57,10 @@ MY_COLOR = ID_COLORS[MY_ID]
 SEND_EVERY = 1.5         # seconds between broadcasts of our own ID
 MAX_CAUGHT = 6           # caught colors visible per wing (rings 1..6 above body)
 
-# The stack of caught colors, oldest first. Newest is appended to the end and
-# shown nearest the wingtip. Our own color is the pinned base (not in here).
+# Caught colors, newest first. A new catch goes in at the front (ring 1, next
+# to the body) and pushes the rest out toward the tip. Our own color is the
+# pinned base and is not stored here.
 stack = []
-last_caught_id = None    # skip repeats from the same neighbor in a row
 
 
 def body_distance(i):
@@ -89,14 +90,10 @@ def render():
 
 
 def catch(sender_id):
-    """Push a neighbor's color onto the stack, dropping the oldest if full."""
-    global last_caught_id
-    if sender_id == last_caught_id:
-        return                            # same neighbor again — ignore the repeat
-    last_caught_id = sender_id
-    stack.append(ID_COLORS[sender_id])
+    """Insert a neighbor's color at the body; everything shifts out toward the tip."""
+    stack.insert(0, ID_COLORS[sender_id])  # newest enters next to the body (ring 1)
     if len(stack) > MAX_CAUGHT:
-        stack.pop(0)                      # oldest falls off the bottom, stack shifts down
+        stack.pop()                        # oldest slides off the wingtip
     print(f"Caught #{sender_id}. Stack now: {[id_of(c) for c in stack]}")
 
 
@@ -133,9 +130,9 @@ while True:
 # 1. Give your board a different MY_ID and a partner a different one too.
 #    Watch each other's color climb your wings.
 #
-# 2. Make it a QUEUE instead of a stack: when full, drop the NEWEST instead
-#    of the oldest (change which end pop() removes from). How does the look
-#    change?
+# 2. Reverse the flow: make new colors enter at the WINGTIP and slide back
+#    toward the body instead of outward. (Append instead of insert(0), and
+#    pop(0) instead of pop().)
 #
 # 3. Flash the whole butterfly briefly in the caught color before adding it
 #    to the stack, so a catch is easy to spot. (Reuse the green-flash idea
