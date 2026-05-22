@@ -52,27 +52,27 @@ The board supports two programming environments: **CircuitPython** and **MicroBl
 2. A new drive will appear on your computer.
 3. Drag the bootloader `.uf2` file onto that drive. The board will reboot automatically.
 
-### Option A — CircuitPython
+### Option A - CircuitPython
 
-1. **Flash the bootloader** — drag `circuitpython/bootloader/adafruit-circuitpython-raspberry_pi_pico-en_GB-9.2.9.uf2` onto the drive. The board reboots as a `CIRCUITPY` drive.
+1. **Flash the bootloader** - drag `circuitpython/bootloader/adafruit-circuitpython-raspberry_pi_pico-en_GB-9.2.9.uf2` onto the drive. The board reboots as a `CIRCUITPY` drive.
 
-2. **Copy the libraries** — copy the contents of `circuitpython/libraries/` into the `lib/` folder on the `CIRCUITPY` drive.
+2. **Copy the libraries** - copy the contents of `circuitpython/libraries/` into the `lib/` folder on the `CIRCUITPY` drive.
 
-3. **Copy a code example** — copy one of the `.py` files from `circuitpython/workshop_exercises/` (or `circuitpython/other fun examples/`) onto the `CIRCUITPY` drive and rename it `code.py`. The board runs `code.py` automatically on boot.
+3. **Copy a code example** - copy one of the `.py` files from `circuitpython/workshop_exercises/` (or `circuitpython/other fun examples/`) onto the `CIRCUITPY` drive and rename it `code.py`. The board runs `code.py` automatically on boot.
 
-4. **Serial console (optional)** — connect with any serial terminal (115200 baud) or use the [Mu editor](https://codewith.mu/) to see `print()` output.
+4. **Serial console (optional)** - connect with any serial terminal (115200 baud) or use the [Mu editor](https://codewith.mu/) to see `print()` output.
 
-### Option B — MicroBlocks
+### Option B - MicroBlocks
 
-1. **Flash the bootloader** — drag `microblocks/bootloader/vm_pico_w.uf2` onto the drive.
+1. **Flash the bootloader** - drag `microblocks/bootloader/vm_pico_w.uf2` onto the drive.
 
-2. **Open MicroBlocks** — download the [MicroBlocks IDE](https://microblocks.fun) or use the browser-based version, then connect to the board over USB and start building block programs.
+2. **Open MicroBlocks** - download the [MicroBlocks IDE](https://microblocks.fun) or use the browser-based version, then connect to the board over USB and start building block programs.
 
 ---
 
 ## Workshop Exercises
 
-The workshop is built around five bite-sized exercises in `circuitpython/workshop_exercises/`. Each one is self-contained, prints to the serial console, and ends with challenges for fast finishers. Work through them in order — they build skill by skill.
+The workshop is built around five bite-sized exercises in `circuitpython/workshop_exercises/`. Each one is self-contained, prints to the serial console, and ends with challenges for fast finishers. Work through them in order - they build skill by skill.
 
 | File | Skill |
 |---|---|
@@ -90,7 +90,7 @@ Ready-to-run demos in `circuitpython/other fun examples/`. All use 26 NeoPixels 
 
 | File | Description |
 |---|---|
-| `code-single-neopixel.py` | Turns all 26 LEDs solid purple — good first test |
+| `code-single-neopixel.py` | Turns all 26 LEDs solid purple - good first test |
 | `code_fade_inout.py` | Pulses all LEDs purple, fading smoothly between 1% and 30% brightness |
 | `code_rainbow.py` | Cycles a full rainbow across all LEDs |
 | `code_rainbow_cycling.py` | Rotates a rainbow pattern around the LEDs |
@@ -100,7 +100,7 @@ Ready-to-run demos in `circuitpython/other fun examples/`. All use 26 NeoPixels 
 | `code_ir_send.py` | Displays a rainbow and broadcasts the pattern via IR every 3 seconds |
 | `code_ir_receive.py` | Listens for an IR pattern signal and plays a rainbow animation when received |
 | `code_ir_transceiver.py` | Low-level IR send/receive demo (receives any NEC signal, transmits every 5 s) |
-| `code_firefly_sync.py` | Mirollo-Strogatz firefly sync — butterflies flash periodically and converge to blink in unison via IR |
+| `code_firefly_sync.py` | Mirollo-Strogatz firefly sync - butterflies flash periodically and converge to blink in unison via IR |
 | `code_color_trade.py` | Each butterfly starts with a random vibrant color and blends toward the colors of nearby butterflies via IR |
 | `code_relay_wave.py` | A rotating rainbow that ripples butterfly-to-butterfly via IR, dying out after a fixed number of hops |
 
@@ -151,7 +151,7 @@ butterfly-OHS26-workshop/
 ├── circuitpython/
 │   ├── bootloader/             # CircuitPython 9.2.9 UF2 for Pico W
 │   ├── libraries/              # Drop required .mpy libraries here
-│   ├── workshop_exercises/     # The four guided workshop exercises (start here)
+│   ├── workshop_exercises/     # The five guided workshop exercises (start here)
 │   └── other fun examples/     # Ready-to-run demos and swarm firmware
 └── microblocks/
     └── bootloader/             # MicroBlocks VM UF2 for Pico W
