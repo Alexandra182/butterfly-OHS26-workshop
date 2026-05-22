@@ -80,7 +80,7 @@ The workshop is built around five bite-sized exercises in `circuitpython/worksho
 | `02_loops_and_brightness.py` | Animate color and brightness over time with loops |
 | `03_wing_flap.py` | Map code to the physical wing shape (distance from the body) |
 | `04_first_ir_message.py` | Send and receive a message between two boards over IR |
-| `05_color_stack.py` | Capstone: catch neighbors' colors over IR and stack them up your wings (LIFO) |
+| `05_color_stack.py` | Capstone: catch neighbors' colors over IR; each catch shifts them out along your wings |
 
 After the exercises, flash one of the swarm examples below for the group finale.
 

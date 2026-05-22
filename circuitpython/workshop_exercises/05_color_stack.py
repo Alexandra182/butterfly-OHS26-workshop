@@ -51,7 +51,7 @@ ID_COLORS = {
     10: (255, 255, 255), # white
 }
 
-MY_ID = 1                # <-- change this on each board!
+MY_ID = 8                # <-- change this on each board!
 MY_COLOR = ID_COLORS[MY_ID]
 
 SEND_EVERY = 1.5         # seconds between broadcasts of our own ID
