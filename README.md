@@ -26,6 +26,7 @@ The badge is built around an **RP2040** microcontroller and features **26 NeoPix
 
 - Custom butterfly-shaped PCB
 - IR transceiver module
+- Qwiic-to-STEMMA cable
 - USB-C to USB-A cable
 
 Bring a laptop with a USB port. LiPo batteries are not included; the badge runs on USB power during the workshop.
@@ -110,37 +111,6 @@ Ready-to-run demos in `circuitpython/other fun examples/`. All use 26 NeoPixels 
 # Copy to CIRCUITPY drive and rename:
 cp circuitpython/workshop_exercises/01_addressing_leds.py /media/$USER/CIRCUITPY/code.py
 ```
-
----
-
-## IR Transceiver
-
-### Wiring
-
-Connect the IR transceiver module to the Qwiic connector on the butterfly board using the following pinout:
-
-| RP2040 | IR module |
-|---|---|
-| 3V3 | VIN |
-| GND | GND |
-| GP0 | IRin |
-| GP1 | IRout |
-
-### Usage
-
-An IR transceiver module can be connected via the Qwiic connector (GP0 / GP1). `code_ir_transceiver.py` demonstrates badge-to-badge communication:
-
-- **Receives** IR signals and prints the decoded bytes.
-- **Transmits** a configurable NEC command every 5 seconds.
-
-To change what is sent, edit these two lines at the top of the file:
-
-```python
-SEND_ADDRESS = 0x00
-SEND_COMMAND = 0x16
-```
-
-Requires the `adafruit_irremote` and `pulseio` libraries installed on the `CIRCUITPY` drive.
 
 ---
 
