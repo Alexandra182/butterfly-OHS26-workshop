@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP SM04B-SRSS-TB
+D CONN HEADER SMD R/A 4POS 1MM
+K
+F https://www.jst-mfg.com/product/pdf/eng/eSH.pdf?61bf6c80a2dbc
+$ENDCMP
+#
+#End Doc Library

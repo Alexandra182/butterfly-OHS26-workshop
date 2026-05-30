@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP W25Q64JVSSIQE
+D NOR Flash spiFlash, 64M-bit, DTR, 4Kb Uniform Sector
+K
+F 
+$ENDCMP
+#
+#End Doc Library

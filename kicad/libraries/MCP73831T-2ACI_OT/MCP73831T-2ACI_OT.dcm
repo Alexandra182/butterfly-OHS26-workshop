@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MCP73831T-2ACI_OT
+D Li-Ion Charge Controller 4.2V SOT23-5
+K
+F http://ww1.microchip.com/downloads/en/DeviceDoc/20001984g.pdf
+$ENDCMP
+#
+#End Doc Library

@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP AP7361EA-33E-13
+D LDO Voltage Regulators LDO CMOS HiCurr SOT223 T&R 2.5K
+K
+F https://www.diodes.com//assets/Datasheets/AP7361EA.pdf
+$ENDCMP
+#
+#End Doc Library

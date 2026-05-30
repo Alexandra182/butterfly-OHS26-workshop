@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 1312020030000
+D Red, Green, Blue (RGB) 625nm Red, 525nm Green, 470nm Blue LED Indication - Discrete 5V Red, 5V Green, 5V Blue 4-SMD, No Lead
+K
+F https://www.we-online.com/components/products/datasheet/1312020030000.pdf
+$ENDCMP
+#
+#End Doc Library
